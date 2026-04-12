@@ -29,7 +29,7 @@ modules:
 
   - name: Fashion_shop-db-deployer
     type: hdb
-    path: db #gen/db
+    path: db # gen/db
     parameters:
       buildpack: nodejs_buildpack
     requires:
