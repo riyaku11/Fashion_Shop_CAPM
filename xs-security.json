@@ -1,5 +1,68 @@
 {
-  "scopes": [],
+  "xsappname": "Fashion_shop",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.viewer",
+      "description": "Read-only access to all fashion shop data"
+    },
+    {
+      "name": "$XSAPPNAME.admin",
+      "description": "Full access to manage Fashion Items"
+    },
+    {
+      "name": "$XSAPPNAME.manager",
+      "description": "Manage Sections and Fashion Types (master data)"
+    }
+  ],
   "attributes": [],
-  "role-templates": []
+  "role-templates": [
+    {
+      "name": "viewer",
+      "description": "Can only view products and categories",
+      "scope-references": [
+        "$XSAPPNAME.viewer"
+      ]
+    },
+    {
+      "name": "admin",
+      "description": "Can manage fashion items",
+      "scope-references": [
+        "$XSAPPNAME.viewer",
+        "$XSAPPNAME.admin"
+      ]
+    },
+    {
+      "name": "manager",
+      "description": "Can manage sections and fashion types",
+      "scope-references": [
+        "$XSAPPNAME.viewer",
+        "$XSAPPNAME.admin",
+        "$XSAPPNAME.manager"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "FashionShop_Viewer",
+      "description": "Fashion Shop - Read Only",
+      "role-template-references": [
+        "$XSAPPNAME.viewer"
+      ]
+    },
+    {
+      "name": "FashionShop_Admin",
+      "description": "Fashion Shop - Item Administrator",
+      "role-template-references": [
+        "$XSAPPNAME.admin"
+      ]
+    },
+    {
+      "name": "FashionShop_Manager",
+      "description": "Fashion Shop - Full Manager",
+      "role-template-references": [
+        "$XSAPPNAME.manager"
+      ]
+    }
+  ]
 }

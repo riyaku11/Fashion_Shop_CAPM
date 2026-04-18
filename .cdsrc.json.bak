@@ -1,0 +1,30 @@
+{
+  "[development]": {
+    "db": {
+      "kind": "sqlite",
+      "credentials": {
+        "url": ":memory:"
+      }
+    },
+    "auth": {
+      "kind": "mocked",
+      "users": {
+        "riya": {
+          "password": "pass",
+          "roles": ["Manager", "Admin", "Viewer"]
+        }
+      }
+    }
+  },
+  "[hybrid]": {
+    "auth": {
+      "kind": "mocked",
+      "users": {
+        "riya": {
+          "password": "pass",
+          "roles": ["Manager", "Admin", "Viewer"]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+using FashionShop_Service as service from '../../srv/fashionShop_srv';

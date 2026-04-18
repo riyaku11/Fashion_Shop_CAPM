@@ -1,9 +1,25 @@
 {
+  "welcomeFile": "/comfashionshopfashionitemsui/index.html",
+  "authenticationMethod": "route",
   "routes": [
+    {
+      "source": "^/comfashionshopfashionitemsui/(.*)$",
+      "target": "/comfashionshopfashionitemsui/$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/odata/(.*)$",
+      "target": "/odata/$1",
+      "destination": "srv-api",
+      "authenticationType": "xsuaa",
+      "csrfProtection": true
+    },
     {
       "source": "^/(.*)$",
       "target": "$1",
       "destination": "srv-api",
+      "authenticationType": "xsuaa",
       "csrfProtection": true
     }
   ]

@@ -1,14 +1,107 @@
 using app.fashioShop from '../db/fashioShop';
 
+// @requires: 'authenticated-user'
+@requires: 'manager'
 service FashionShop_Service {
+    @restrict: [
+        {
+            grant: 'READ',
+            to   : 'viewer'
+        },
+        {
+            grant: 'READ',
+            to   : 'admin'
+        },
+        {
+            grant: [
+                'READ',
+                'CREATE',
+                'UPDATE',
+                'DELETE'
+            ],
+            to   : 'manager'
+        }
+    ]
     entity Sections        as projection on fashioShop.Sections;
 
     @cds.redirection.target: true
+    @restrict              : [
+        {
+            grant: 'READ',
+            to   : 'viewer'
+        },
+        {
+            grant: 'READ',
+            to   : 'admin'
+        },
+        {
+            grant: [
+                'READ',
+                'CREATE',
+                'UPDATE',
+                'DELETE'
+            ],
+            to   : 'manager'
+        }
+    ]
     entity Fashion_Types   as projection on fashioShop.Fashion_Types;
 
+    @restrict: [
+        {
+            grant: 'READ',
+            to   : 'viewer'
+        },
+        {
+            grant: [
+                'READ',
+                'CREATE',
+                'UPDATE',
+                'DELETE'
+            ],
+            to   : 'admin'
+        },
+        {
+            grant: [
+                'READ',
+                'CREATE',
+                'UPDATE',
+                'DELETE'
+            ],
+            to   : 'manager'
+        }
+    ]
     entity Fashion_Items   as projection on fashioShop.Fashion_Items;
 
+    @restrict: [
+        {
+            grant: 'READ',
+            to   : 'viewer'
+        },
+        {
+            grant: 'READ',
+            to   : 'admin'
+        },
+        {
+            grant: 'READ',
+            to   : 'manager'
+        }
+    ]
     entity Srv_FashionShop as projection on fashioShop.YC_FashioShop;
+
+    @restrict: [
+        {
+            grant: 'READ',
+            to   : 'viewer'
+        },
+        {
+            grant: 'READ',
+            to   : 'admin'
+        },
+        {
+            grant: 'READ',
+            to   : 'manager'
+        }
+    ]
     entity F4_FashionType  as projection on fashioShop.YC_FashionType;
 }
 
