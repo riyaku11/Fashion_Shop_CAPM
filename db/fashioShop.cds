@@ -4,28 +4,28 @@ using {Currency } from '@sap/cds/common';
 type Flag : String(1);
 
 entity Sections {
-    key id : UUID;
-        name : String(16);
-        description : String(64);
+    key id : UUID @(title : 'Section ID') ;
+        name : String(16) @(title : 'Section Name');
+        description : String(64) @(title : 'Section Desc');
 }
 
 entity Fashion_Types {
-    key id : UUID;
-        section : Association to Sections;
-        typename : String(16);
-        description : String(64);
+    key id : UUID @(title : 'Fashion Type ID');
+        section : Association to Sections @(title : 'Section ID');
+        typename : String(16) @(title : 'Fashion Type');
+        description : String(64) @(title : 'Fashion Type Description');
 }
 
 entity Fashion_Items {
-    key id : UUID;
-        fashionType : Association to Fashion_Types;
-        itemname : String(16);
-        brand : String(16);
-        size : String(8);
-        material : String(16);
-        price : String(10);
-        Currency : Currency;
-        isAvailable : Flag;
+    key id : UUID @(title : 'Fashion Item ID');
+        fashionType : Association to Fashion_Types @(title : 'Fashion Type ID');
+        itemname : String(16) @(title : 'Fashion Item');
+        brand : String(16) @(title : 'Brand');
+        size : String(8) @(title : 'Size');
+        material : String(16) @(title : 'Material');
+        price : String(10) @(title : 'Price');
+        Currency : Currency @(title : 'Currency');
+        isAvailable : Flag @(title : 'Is Available');
 }
 
 //view creation for fashion shop
@@ -53,3 +53,11 @@ view YC_FashioShop as select from Fashion_Items as fItem
         else 'Low-Range'
     end as priceRange : String(10)    
 } where fItem.isAvailable = 'X';
+
+
+view YC_FashionType as select from Fashion_Types as fType
+{
+    fType.id as fashionTypeID,
+    fType.typename as fashionTypeName,
+    fType.section.name as sectionName
+}
